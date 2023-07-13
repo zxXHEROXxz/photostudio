@@ -1,23 +1,38 @@
+<?php
+
+// get the username from the session
+session_start();
+if (!isset($_SESSION['verified'])) {
+    header('location: login_reg_page.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Studio Page</title>
     <link rel="stylesheet" href="assets/css/studio_page.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Studio Page</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Packages</a>
+
+                <a class="nav-link" href="#">Packages</a>
                 </li>
                 <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Studio</a>
                 </li>
                 <li class="nav-item">
@@ -33,7 +48,12 @@
                     <a class="nav-link" href="#">Order Status</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Log out</a>
+                    <div class="logout">
+                        <form class="" action="send_otp.php" method="post">
+                            <input type="submit" name="logout" value="Logout">
+                            <!-- <a class="nav-link"  href="#">Log out</a> -->
+                        </form>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -46,7 +66,8 @@
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label for="reservation-date">Reservation Date:</label>
-                        <input type="text" class="form-control datepicker" id="reservation-date" placeholder="Select Date" required>
+                        <input type="text" class="form-control datepicker" id="reservation-date"
+                            placeholder="Select Date" required>
                     </div>
                     <div class="form-group">
                         <label for="studio">Studio:</label>
@@ -71,13 +92,14 @@
                         <select class="form-control" id="package" required>
                             <option value="">Select Package</option>
                             <option value="package1">Package 1 (Available) - LKR.2000</option>
-                            <option value="package2" disabled>Package 2 (Not Available) - LKR.2500</option>
+                            <option value="package2">Package 2 (Not Available) - LKR.2500</option>
                             <option value="package3">Package 3 (Available) - LKR.3000</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="price">Advance Payment Price:</label>
-                        <input type="number" class="form-control" id="price" placeholder="Enter Advance Payment Price" required>
+                        <input type="number" class="form-control" id="price" placeholder="Enter Advance Payment Price"
+                            required>
                     </div>
                     <button type="submit" class="btn btn-primary">Make Reservation</button>
                 </form>
@@ -87,9 +109,10 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
                 autoclose: true
@@ -97,4 +120,5 @@
         });
     </script>
 </body>
+
 </html>
