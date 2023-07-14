@@ -109,11 +109,15 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $otp, PDO::PARAM_STR);
         if ($stmt->execute()) {
+            // Fetch the user's details from the database
+            $user = $result[0];
+
+            // Set the necessary session variables
             session_start();
-            // if otp is 0, the user is verified
             $_SESSION['verified'] = true;
-            $_SESSION['username'] = $_POST['name-register'];
-            // Redirect to the dashboard
+            $_SESSION['username'] = $user['name'];
+
+            // Redirect to the dashboard or desired page
             header('location: studio_page.php');
             exit;
         } else {
@@ -127,21 +131,32 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     }
 } else if (isset($_POST['email-login'])) {
     $email = $_POST['email-login'];
+    $password = $_POST['password-login'];
+
     $sql = "SELECT * FROM `users` WHERE `email` = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(1, $email, PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     if (count($result) > 0) {
-        // If the email is registered, start the session and redirect to the dashboard
-        session_start();
-        $_SESSION['verified'] = true;
-        $_SESSION['username'] = $_POST['name-register'];
-        // Redirect to the dashboard
-        header('location: studio_page.php');
-        exit;
+        $user = $result[0];
+        $hashed_password = $user['password'];
+
+        // Verify the password
+        if (password_verify($password, $hashed_password)) {
+            // Password is correct, log the user in
+            session_start();
+            $_SESSION['verified'] = true;
+            $_SESSION['username'] = $user['name'];
+            header('location: studio_page.php');
+            exit;
+        } else {
+            // Password is incorrect, display an error message
+            echo "<script>alert('Incorrect password'); window.location.href = 'login_reg_page.php';</script>";
+        }
     } else {
-        // Alert the user that the email is not registered
+        // User does not exist, display an error message
         echo "<script>alert('Email not registered')</script>";
     }
 } else if (isset($_POST['logout'])) {
