@@ -28,10 +28,9 @@ if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-
-                <a class="nav-link" href="#">Packages</a>
-                </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">Packages</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Studio</a>
                 </li>
@@ -48,12 +47,7 @@ if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
                     <a class="nav-link" href="#">Order Status</a>
                 </li>
                 <li class="nav-item">
-                    <div class="logout">
-                        <form class="" action="send_otp.php" method="post">
-                            <input type="submit" name="logout" value="Logout">
-                            <!-- <a class="nav-link"  href="#">Log out</a> -->
-                        </form>
-                    </div>
+                    <a class="nav-link" href="login_reg_page.php">Log out</a>
                 </li>
             </ul>
         </div>
