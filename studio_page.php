@@ -3,8 +3,12 @@ session_start();
 
 if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
     echo "<script>alert('The user is verified.');</script>";
-    // Reset the session variable
-    $_SESSION['verified'] = false;
+
+
+} else {
+    // Redirect to the login page
+    header('location: message_box.php?msg=User not verified');
+    exit;
 }
 ?>
 

@@ -13,13 +13,13 @@
             <div class="card-body">
                 <h5 class="card-title">OTP Verification</h5>
                 <p class="card-text">Please enter the OTP sent to your email address.</p>
-                <form action="send_otp.php" method="POST">
+                <form action="user_login_controller.php" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" name="otp" placeholder="Enter OTP" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Verify</button>
                 </form>
-                <form action="resend_otp.php" method="POST">
+                <form action="user_login_controller.php" method="POST">
                     <p class="resend-link">Didn't receive the OTP? <button type="submit" class="btn btn-link"
                             name="resend">Resend OTP</button></p>
                 </form>

@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="assets/css/page_loader.css">
+    <link rel="stylesheet" href="css/pre_loader.css">
     <title>Photo Studio Loading</title>
     <script>
         // Function to redirect to the landing page
         function redirect() {
-            window.location.href = "landing_page.php";
+            window.location.href = "/PSS/landing_page.php";
         }
 
         // Wait for the animation to complete

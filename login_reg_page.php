@@ -1,19 +1,3 @@
-<?php
-session_start(); // Start the session
-
-// Check if the active tab is set in the session, otherwise set it to the login form
-if (!isset($_SESSION['active_tab'])) {
-    $_SESSION['active_tab'] = 'login-form';
-}
-
-// Check if the email already exists and redirect to the register form if needed
-if (isset($_SESSION['email_exists'])) {
-    $_SESSION['active_tab'] = 'register-form';
-    unset($_SESSION['email_exists']);
-}
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -51,7 +35,7 @@ if (isset($_SESSION['email_exists'])) {
 
     <!-- Loader HTML -->
     <div class="loader">
-        <img src="loader.gif" alt="Loading...">
+        <img src="assets\images\loader.gif" alt="Loading...">
     </div>
 
     <div class="container content">
@@ -62,7 +46,7 @@ if (isset($_SESSION['email_exists'])) {
                         id="login-form">
                         <h5 class="card-title">Login</h5>
 
-                        <form action="send_otp.php" method="post">
+                        <form action="user_login_controller.php" method="post">
                             <div class="form-group">
                                 <label for="email-login">Email</label>
                                 <input type="email" class="form-control" name="email-login" required>
@@ -88,7 +72,7 @@ if (isset($_SESSION['email_exists'])) {
                         <h5 class="card-title">Register</h5>
 
 
-                        <form action="send_otp.php" method="post">
+                        <form action="user_login_controller.php" method="post">
 
                             <div class="form-group">
                                 <label for="name-register">Name</label>
@@ -154,6 +138,14 @@ if (isset($_SESSION['email_exists'])) {
             </div>
         </div>
     </div>
+
+    <!-- Add the button -->
+    <div class="home d-flex justify-content-center">
+        <a href="landing_page.php" class="btn btn-sm unique-button">Home</a>
+    </div>
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

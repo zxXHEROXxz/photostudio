@@ -51,7 +51,7 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($result) > 0) {
-        echo "<script>alert('Email already exists'); window.location.href = 'login_reg_page.php';</script>";
+        header('location: message_box.php?msg=Email already exists');
         exit;
     }
 
@@ -89,13 +89,14 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
 
             $mail->send();
             header('location: verify_page.php');
-            echo 'Message has been sent';
+            // echo 'Message has been sent';
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     } else {
-        echo "Data not inserted, message not sent";
+        // echo "Data not inserted, message not sent";
     }
+
 } else if (isset($_POST['otp'])) {
     $otp = $_POST['otp'];
     $sql = "SELECT * FROM `users` WHERE `otp` = ?";
@@ -121,12 +122,12 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
             header('location: studio_page.php');
             exit;
         } else {
-            echo "Error";
+
             exit;
         }
     } else {
         // Alert the user that the OTP is wrong
-        echo "<script>alert('Wrong OTP'); window.location.href = 'verify_page.php';</script>";
+        header('location: message_box.php?msg=Wrong OTP');
         exit;
     }
 } else if (isset($_POST['email-login'])) {
@@ -142,10 +143,20 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     if (count($result) > 0) {
         $user = $result[0];
         $hashed_password = $user['password'];
+        $otp = $user['otp']; // Assuming the OTP column is named 'otp'
 
         // Verify the password
         if (password_verify($password, $hashed_password)) {
-            // Password is correct, log the user in
+            // Password is correct
+            if ($otp > 0) {
+                // User is not verified, redirect to verify_page.php
+                header('location: message_box.php?msg=User not verified');
+
+
+                exit;
+            }
+
+            // User is verified, log them in
             session_start();
             $_SESSION['verified'] = true;
             $_SESSION['username'] = $user['name'];
@@ -153,15 +164,66 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
             exit;
         } else {
             // Password is incorrect, display an error message
-            echo "<script>alert('Incorrect password'); window.location.href = 'login_reg_page.php';</script>";
+            header('location: message_box.php?msg=Login Password Incorrect');
         }
     } else {
         // User does not exist, display an error message
-        echo "<script>alert('Email not registered'); window.location.href = 'login_reg_page.php';</script>";
+        header('location: message_box.php?msg=Login Email not found');
     }
+
+
 } else if (isset($_POST['logout'])) {
     session_start();
     session_destroy();
     header('location: login_reg_page.php');
 }
+
+
+// Resend
+// Get the user's email from the session
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+
+
+    // get otp from generate_otp.php
+    $otp = $_SESSION['otp'];
+
+    try {
+        // Update the OTP in the database
+        $conn = new PDO("mysql:host=localhost;dbname=pss;charset=utf8", "root", "");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "UPDATE users SET otp = :otp WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':otp', $otp);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        // Check if the update was successful
+        if ($stmt->rowCount() > 0) {
+            // Recipients
+            $mail->addAddress($email);
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = "New OTP for verification";
+            $mail->Body = "Hey, here's your new OTP: " . $otp;
+
+            $mail->send();
+
+            header('location: message_box.php?msg=New OTP sent');
+            exit();
+        } else {
+
+        }
+    } catch (Exception $e) {
+        header('location: message_box.php?msg=Message could not be sent. Mailer Error.');
+        exit();
+    }
+} else {
+    // email not found error
+    header('location: message_box.php?msg=Email not found');
+    exit();
+}
+
 ?>

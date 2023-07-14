@@ -42,3 +42,17 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
+.unique-button {
+    background-color: orange !important; 
+    border-color: orange !important; 
+    color: #fff;
+    width: 80px; 
+    height: 35px; 
+}
+.unique-button:hover {
+    background-color: #ff9800 !important; 
+    border-color: #ff9800 !important; 
+    color: #fff;
+}
+
+
