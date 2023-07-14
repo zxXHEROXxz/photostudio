@@ -47,10 +47,10 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     // Check if the email already exists in the database
     $emailExistsQuery = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($emailExistsQuery);
-    $stmt->bind_param("s", $email);
+    $stmt->bindValue(1, $email, PDO::PARAM_STR);
     $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
         echo "<script>alert('Email already exists'); window.location.href = 'login_reg_page.php';</script>";
         exit;
     }
@@ -71,7 +71,12 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     echo "<script>alert('Session set')</script>";
     $sql = "INSERT INTO users (name, email, password, address, phone, otp) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $name, $email, $hashed_password, $address, $phone, $otp);
+    $stmt->bindValue(1, $name, PDO::PARAM_STR);
+    $stmt->bindValue(2, $email, PDO::PARAM_STR);
+    $stmt->bindValue(3, $hashed_password, PDO::PARAM_STR);
+    $stmt->bindValue(4, $address, PDO::PARAM_STR);
+    $stmt->bindValue(5, $phone, PDO::PARAM_STR);
+    $stmt->bindValue(6, $otp, PDO::PARAM_STR);
     if ($stmt->execute()) {
         try {
             // Recipients
@@ -95,58 +100,49 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
     $otp = $_POST['otp'];
     $sql = "SELECT * FROM `users` WHERE `otp` = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $otp);
+    $stmt->bindValue(1, $otp, PDO::PARAM_STR);
     $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result) {
-        if ($result->num_rows > 0) {
-            // If the OTP is correct, start the session and redirect to the dashboard, set the database otp to 0
-            $sql = "UPDATE `users` SET `otp` = '0' WHERE `otp` = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $otp);
-            if ($stmt->execute()) {
-                session_start();
-                // if otp is 0, the user is verified
-                $_SESSION['verified'] = true;
-                $_SESSION['username'] = $_POST['name-register'];
-                // Redirect to the dashboard
-                header('location: studio_page.php');
-                exit;
-            } else {
-                echo "Error";
-                exit;
-            }
-        } else {
-            // Alert the user that the OTP is wrong
-            echo "<script>alert('Wrong OTP'); window.location.href = 'verify_page.php';</script>";
-            exit;
-        }
-    } else {
-        echo "Error";
-        exit;
-    }
-} else if (isset($_POST['email-login'])) {
-    $email = $_POST['email-login'];
-    $sql = "SELECT * FROM `users` WHERE `email` = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result) {
-        if ($result->num_rows > 0) {
-            // If the email is registered, start the session and redirect to the dashboard
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        // If the OTP is correct, start the session and redirect to the dashboard, set the database otp to 0
+        $sql = "UPDATE `users` SET `otp` = '0' WHERE `otp` = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $otp, PDO::PARAM_STR);
+        if ($stmt->execute()) {
             session_start();
+            // if otp is 0, the user is verified
             $_SESSION['verified'] = true;
             $_SESSION['username'] = $_POST['name-register'];
             // Redirect to the dashboard
             header('location: studio_page.php');
             exit;
         } else {
-            // Alert the user that the email is not registered
-            echo "<script>alert('Email not registered')</script>";
+            echo "Error";
+            exit;
         }
     } else {
-        echo "Error";
+        // Alert the user that the OTP is wrong
+        echo "<script>alert('Wrong OTP'); window.location.href = 'verify_page.php';</script>";
+        exit;
+    }
+} else if (isset($_POST['email-login'])) {
+    $email = $_POST['email-login'];
+    $sql = "SELECT * FROM `users` WHERE `email` = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(1, $email, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        // If the email is registered, start the session and redirect to the dashboard
+        session_start();
+        $_SESSION['verified'] = true;
+        $_SESSION['username'] = $_POST['name-register'];
+        // Redirect to the dashboard
+        header('location: studio_page.php');
+        exit;
+    } else {
+        // Alert the user that the email is not registered
+        echo "<script>alert('Email not registered')</script>";
     }
 } else if (isset($_POST['logout'])) {
     session_start();

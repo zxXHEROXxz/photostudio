@@ -33,18 +33,34 @@ if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 
     try {
-        // Recipients
-        $mail->addAddress($email);
+        // Update the OTP in the database
+        $conn = new PDO("mysql:host=localhost;dbname=pss;charset=utf8", "root", "");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = "New OTP for verification";
-        $mail->Body = "Hey, here's your new OTP: " . $otp;
+        $sql = "UPDATE users SET otp = :otp WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':otp', $otp);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-        $mail->send();
+        // Check if the update was successful
+        if ($stmt->rowCount() > 0) {
+            // Recipients
+            $mail->addAddress($email);
 
-        echo "<script>alert('New OTP has been sent'); window.location.href = 'verify_page.php';</script>";
-        exit();
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = "New OTP for verification";
+            $mail->Body = "Hey, here's your new OTP: " . $otp;
+
+            $mail->send();
+
+            echo "<script>alert('New OTP has been sent'); window.location.href = 'verify_page.php';</script>";
+            exit();
+        } else {
+            echo "<script>alert('Failed to update OTP in the database.'); window.location.href = 'verify_page.php';</script>";
+            exit();
+        }
     } catch (Exception $e) {
         echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}'); window.location.href = 'verify_page.php';</script>";
         exit();
