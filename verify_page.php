@@ -14,21 +14,15 @@
                 <h5 class="card-title">OTP Verification</h5>
                 <p class="card-text">Please enter the OTP sent to your email address.</p>
                 <form action="send_otp.php" method="POST">
-                    <?php
-                    if (isset($_SESSION['verified'])) {
-                        if ($_SESSION['verified'] == true) {
-                            echo "<script>alert('Verified')</script>";
-                        } else {
-                            echo "<script>alert('Not Verified')</script>";
-                        }
-                    }
-                    ?>
                     <div class="form-group">
                         <input type="text" class="form-control" name="otp" placeholder="Enter OTP" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Verify</button>
                 </form>
-                <p class="resend-link">Didn't receive the OTP? <a href="#">Resend OTP</a></p>
+                <form action="resend_otp.php" method="POST">
+                    <p class="resend-link">Didn't receive the OTP? <button type="submit" class="btn btn-link"
+                            name="resend">Resend OTP</button></p>
+                </form>
             </div>
         </div>
     </div>

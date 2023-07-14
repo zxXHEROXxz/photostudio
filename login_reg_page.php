@@ -1,19 +1,65 @@
+<?php
+session_start(); // Start the session
+
+// Check if the active tab is set in the session, otherwise set it to the login form
+if (!isset($_SESSION['active_tab'])) {
+    $_SESSION['active_tab'] = 'login-form';
+}
+
+// Check if the email already exists and redirect to the register form if needed
+if (isset($_SESSION['email_exists'])) {
+    $_SESSION['active_tab'] = 'register-form';
+    unset($_SESSION['email_exists']);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Login and Register</title>
-    <link rel="stylesheet" href="assets/css/login-register.css">
+    <link rel="stylesheet" href="assets/css/login_register.css">
+    <link rel="stylesheet" href="assets/css/image_loader.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var loader = document.querySelector(".loader");
+            var content = document.querySelector(".content");
+
+            // Show the loader on page refresh
+            if (performance.navigation.type === 1) {
+                loader.style.display = "flex";
+                content.style.display = "none";
+            } else {
+                loader.style.display = "none";
+                content.style.display = "block";
+            }
+
+            // Hide the loader and show the content after a delay
+            setTimeout(function () {
+                loader.style.display = "none";
+                content.style.display = "block";
+            }, 2000); // Adjusted delay time to 2000 milliseconds (2 seconds)
+        });
+    </script>
 </head>
 
 <body>
-    <div class="container">
+
+    <!-- Loader HTML -->
+    <div class="loader">
+        <img src="loader.gif" alt="Loading...">
+    </div>
+
+    <div class="container content">
         <div class="card">
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="login-form">
+                    <div class="tab-pane fade <?php echo $_SESSION['active_tab'] === 'login-form' ? 'show active' : ''; ?>"
+                        id="login-form">
                         <h5 class="card-title">Login</h5>
 
                         <form action="send_otp.php" method="post">
@@ -37,7 +83,8 @@
                         </form>
 
                     </div>
-                    <div class="tab-pane fade" id="register-form">
+                    <div class="tab-pane fade <?php echo $_SESSION['active_tab'] === 'register-form' ? 'show active' : ''; ?>"
+                        id="register-form">
                         <h5 class="card-title">Register</h5>
 
 
@@ -96,10 +143,12 @@
             <div class="card-footer">
                 <ul class="nav nav-tabs card-footer-tabs justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login-form">Login</a>
+                        <a class="nav-link <?php echo $_SESSION['active_tab'] === 'login-form' ? 'active' : ''; ?>"
+                            id="login-tab" data-toggle="tab" href="#login-form">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="register-tab" data-toggle="tab" href="#register-form">Register</a>
+                        <a class="nav-link <?php echo $_SESSION['active_tab'] === 'register-form' ? 'active' : ''; ?>"
+                            id="register-tab" data-toggle="tab" href="#register-form">Register</a>
                     </li>
                 </ul>
             </div>
@@ -123,6 +172,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>

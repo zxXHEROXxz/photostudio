@@ -1,12 +1,12 @@
 <?php
-
-// get the username from the session
 session_start();
-if (!isset($_SESSION['verified'])) {
-    header('location: login_reg_page.php');
+
+if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
+    echo "<script>alert('The user is verified.');</script>";
+    // Reset the session variable
+    $_SESSION['verified'] = false;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
