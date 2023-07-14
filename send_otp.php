@@ -157,7 +157,7 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
         }
     } else {
         // User does not exist, display an error message
-        echo "<script>alert('Email not registered')</script>";
+        echo "<script>alert('Email not registered'); window.location.href = 'login_reg_page.php';</script>";
     }
 } else if (isset($_POST['logout'])) {
     session_start();
