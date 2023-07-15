@@ -18,8 +18,8 @@ if (isset($_GET['msg'])) {
 
     // User not verified
     if ($msg == 'User not verified') {
-        echo "<p>You will be redirected to the login page. </p>";
-        echo "<script>setTimeout(function() { window.location.href = 'login_reg_page.php'; }, 1000);</script>";
+        echo "<p>You will be redirected to the verify page. </p>";
+        echo "<script>setTimeout(function() { window.location.href = 'verify_page.php'; }, 1000);</script>";
     }
 
     // Email exists

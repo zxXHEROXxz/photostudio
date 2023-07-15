@@ -2,7 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    background-color: #183b6e;
+    background-image: url('../images/login_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .container {
@@ -42,17 +46,22 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
-.unique-button {
-    background-color: orange !important; 
-    border-color: orange !important; 
+.home-button {
+    background-color: #0b92aa !important;
+    border-color: #0b92aa !important;
     color: #fff;
-    width: 80px; 
-    height: 35px; 
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
 }
-.unique-button:hover {
-    background-color: #ff9800 !important; 
-    border-color: #ff9800 !important; 
-    color: #fff;
+
+.home-button:hover {
+    background-color: #127688 !important;
+    border-color: #127688 !important;
+    color: black !important; 
 }
+
+
+
 
 

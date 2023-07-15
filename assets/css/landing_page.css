@@ -2,7 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    /* ../ used to locate the image from the folder */
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .container {
@@ -11,60 +15,25 @@ body {
     padding: 0 20px;
 }
 
-header {
-    background-color: #333;
-    padding: 10px 0;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    color: #fff;
-    font-size: 24px;
-    text-decoration: none;
-}
-
-.nav-links li {
-    display: inline-block;
-    margin-left: 15px;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
-}
-
-.dropdown-studio {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.dropdown-studio select {
-    padding: 10px;
-    font-size: 18px;
-}
-
 .studio-package {
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 
 .package-card {
     width: 300px;
+    height: 450px;
     margin: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #758b97;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .package-card h3 {
@@ -77,6 +46,27 @@ header {
     margin-bottom: 20px;
 }
 
+.package-card-content {
+    flex-grow: 1;
+}
+
+.view-details-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0b92aa;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.view-details-btn a:hover {
+    background-color: #127688;
+    box-shadow: none; 
+}
+
 .login-register-button {
     position: fixed;
     top: 10px;
@@ -86,7 +76,7 @@ header {
 
 .login-register-button a {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #0b92aa;
     color: #fff;
     text-decoration: none;
     font-size: 16px;
@@ -95,5 +85,18 @@ header {
 }
 
 .login-register-button a:hover {
-    background-color: #45a049;
+    background-color: #127688;
 }
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row.justify-content-center.mt-5 {
+    margin-top: 12rem !important;
+}
+
+
+

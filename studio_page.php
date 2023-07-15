@@ -25,7 +25,7 @@ if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Studio Page</a>
+        <a class="navbar-brand">Studio Page</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,10 +33,10 @@ if (isset($_SESSION['verified']) && $_SESSION['verified'] === true) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Packages</a>
+                    <a class="nav-link" href="packages_page.php">Packages</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Studio</a>
+                    <a class="nav-link" href="studio_page.php">Studio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Reservation</a>

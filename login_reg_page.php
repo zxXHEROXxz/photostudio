@@ -98,7 +98,7 @@
                                 <label for="confirm-password-register">Confirm Password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="confirm-password-register"
-                                        name="confirm-password-register" required>
+                                        name="confirm-password-register" required oninput="checkPasswordMatch()">
                                     <div class="input-group-append">
                                         <span class="password-icon"
                                             onclick="togglePassword('confirm-password-register')">
@@ -106,6 +106,7 @@
                                         </span>
                                     </div>
                                 </div>
+                                <span id="password-match-message" style="color: red;"></span>
                             </div>
                             <div class="form-group">
                                 <label for="address-register">Address</label>
@@ -116,7 +117,8 @@
                                 <input type="text" class="form-control" name="phone-register" required>
                             </div>
 
-                            <button type="submit" name="register" class="btn btn-primary">Register</button>
+                            <button type="submit" name="register" class="btn btn-primary" id="register-button"
+                                disabled>Register</button>
 
 
                         </form>
@@ -141,8 +143,9 @@
 
     <!-- Add the button -->
     <div class="home d-flex justify-content-center">
-        <a href="landing_page.php" class="btn btn-sm unique-button">Home</a>
+        <a href="landing_page.php" class="btn btn-sm home-button" style="color: #fff;">Home</a>
     </div>
+
 
 
 
@@ -161,6 +164,20 @@
                 passwordInput.type = 'password';
                 passwordIcon.classList.remove('fa-eye-slash');
                 passwordIcon.classList.add('fa-eye');
+            }
+        }
+        function checkPasswordMatch() {
+            var passwordInput = document.getElementById('password-register');
+            var confirmPasswordInput = document.getElementById('confirm-password-register');
+            var passwordMatchMessage = document.getElementById('password-match-message');
+            var registerButton = document.getElementById('register-button');
+
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordMatchMessage.textContent = "Passwords do not match";
+                registerButton.disabled = true;
+            } else {
+                passwordMatchMessage.textContent = "";
+                registerButton.disabled = false;
             }
         }
     </script>
