@@ -60,7 +60,7 @@ try {
 
         // Confirmation message
         echo "Reservation successful!";
-        header("Location: order_status_page.php");
+
 
         // Additional code to generate the PDF printable bill
         // ...

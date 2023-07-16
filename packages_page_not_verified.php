@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 
 <body>
@@ -18,7 +17,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
@@ -27,9 +25,9 @@
                     <form action="#" method="POST">
                         <select class="form-control" name="package" id="packageSelect">
                             <option value="">Select Package</option>
-                            <option value="package1">Package 1: Classic Portrait - Rs.2000</option>
-                            <option value="package2">Package 2: Family Fun - $100</option>
-                            <option value="package3">Package 3: Creative Concept - $150</option>
+                            <option value="package1">Package 1: Classic Portrait - LKR.2000</option>
+                            <option value="package2">Package 2: Family Fun - LKR.2500</option>
+                            <option value="package3">Package 3: Creative Concept - LKR.3000</option>
                         </select>
                     </form>
                 </div>
@@ -108,15 +106,15 @@
                         </div>
                         <div class="form-group">
                             <label for="price"><i class="fas fa-dollar-sign"></i> Price:</label>
-                            <p id="packagePrice">$0</p>
+                            <p id="packagePrice">LKR.0</p>
                         </div>
                         <div class="form-group">
                             <label for="additional-price"><i class="fas fa-dollar-sign"></i> Additional Price:</label>
-                            <p id="additionalPrice">$0</p>
+                            <p id="additionalPrice">LKR.0</p>
                         </div>
                         <div class="form-group">
-                            <label for="total-price"><i class="fas fa-dollar-sign"></i> Grand Total:</label>
-                            <p id="totalPrice">$0</p>
+                            <label for="total-price"><i class="fas fa-dollar-sign"></i> Total:</label>
+                            <p id="totalPrice">LKR.0</p>
                         </div>
                     </div>
                 </div>
@@ -134,19 +132,19 @@
                 var additionalPrice = 0;
 
                 if (selectedPackage === 'package1') {
-                    basePrice = 50;
+                    basePrice = 2000;
                     $('#number-of-photos').val('5');
                 } else if (selectedPackage === 'package2') {
-                    basePrice = 100;
+                    basePrice = 2500;
                     $('#number-of-photos').val('5');
                 } else if (selectedPackage === 'package3') {
-                    basePrice = 150;
+                    basePrice = 3000;
                     $('#number-of-photos').val('5');
                 }
 
-                $('#packagePrice').text('$' + basePrice);
-                $('#additionalPrice').text('$' + additionalPrice);
-                $('#totalPrice').text('$' + (basePrice + additionalPrice));
+                $('#packagePrice').text('LKR.' + basePrice);
+                $('#additionalPrice').text('LKR.' + additionalPrice);
+                $('#totalPrice').text('LKR.' + (basePrice + additionalPrice));
 
                 if (selectedPackage !== '') {
                     $('#location').prop('disabled', false);
@@ -167,27 +165,27 @@
                 var numberOfPhotos = parseInt($('#number-of-photos').val());
 
                 if (selectedPackage === 'package1') {
-                    basePrice = 50;
+                    basePrice = 2000;
                 } else if (selectedPackage === 'package2') {
-                    basePrice = 100;
+                    basePrice = 2500;
                 } else if (selectedPackage === 'package3') {
-                    basePrice = 150;
+                    basePrice = 3000;
                 }
 
                 if (numberOfPhotos === 5) {
                     additionalPrice = 0;
                 } else if (numberOfPhotos === 10) {
-                    additionalPrice = 50;
+                    additionalPrice = 500;
                 } else if (numberOfPhotos === 15) {
-                    additionalPrice = 100;
+                    additionalPrice = 1000;
                 } else if (numberOfPhotos === 20) {
-                    additionalPrice = 150;
+                    additionalPrice = 1500;
                 }
 
                 var totalPrice = basePrice + additionalPrice;
 
-                $('#additionalPrice').text('$' + additionalPrice);
-                $('#totalPrice').text('$' + totalPrice);
+                $('#additionalPrice').text('LKR.' + additionalPrice);
+                $('#totalPrice').text('LKR.' + totalPrice);
             });
         });
     </script>
@@ -230,6 +228,3 @@
             startCarousel();
         });
     </script>
-</body>
-
-</html>

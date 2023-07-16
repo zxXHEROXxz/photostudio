@@ -98,7 +98,7 @@ $html = '
 
 </style>
 <div class="bill-container">
-    <img class="bill-studio-logo" src="assets/images/photo_studio_logo.jpg" alt="Studio Logo">
+    <img class="bill-studio-logo" src="assets/images/photo_studio_logo.png" alt="Studio Logo">
     <h1 class="bill-title">Invoice</h1>
     <div class="bill-category">Reservation</div>
     <div class="bill-info">
@@ -142,11 +142,11 @@ $html = '
         <p>LKR ' . $total . '</p>
     </div>
     <div class="bill-studio-info">
-        <p>PhotoStudio</p>
+        <p>Photo Studio</p>
         <p>18 Galle Rd</p>
-        <p>Colombo 04</p>
-        <p>Phone: (94)71-458-7955</p>
-        <p>Email: info@photostudio.com</p>
+        <p>Kalutara</p>
+        <p>Phone: (94)71-444-7777</p>
+        <p>Email: info@photography.com</p>
         <div class="bill-print-date">
             <p>Printed on: ' . gmdate('Y-m-d h:i:s A', time() + 19800) . '</p>
         </div>

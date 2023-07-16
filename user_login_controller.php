@@ -119,7 +119,7 @@ if (isset($_POST['name-register']) && isset($_POST['email-register']) && isset($
             $_SESSION['username'] = $user['name'];
 
             // Redirect to the dashboard or desired page
-            header('location: reservation_page.php');
+            header('location: packages_page.php');
             exit;
         } else {
 
@@ -221,11 +221,4 @@ if (isset($_SESSION['email'])) {
     exit();
 }
 
-// Logout if the user clicks the logout button
-if (isset($_POST['logout'])) {
-    session_start();
-    session_destroy();
-    header('location: index.php');
-    exit;
-}
 ?>
