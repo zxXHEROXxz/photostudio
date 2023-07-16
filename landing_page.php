@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Photo Studio</title>
+    <title>Photo Studio Home Page</title>
     <link rel="stylesheet" href="assets/css/landing_page.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>

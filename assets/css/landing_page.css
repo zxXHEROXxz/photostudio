@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     /* ../ used to locate the image from the folder */
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/home_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -28,13 +28,14 @@ body {
     height: 450px;
     margin: 20px;
     padding: 20px;
-    background-color: #758b97;
+    background-image: linear-gradient(to bottom, #2db6ff, #c24bff);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 
 .package-card h3 {
     font-size: 24px;
@@ -94,7 +95,7 @@ body {
     align-items: center;
 }
 
-.row.justify-content-center.mt-5 {
+.row.justify-content-center.mt-5 { 
     margin-top: 12rem !important;
 }
 

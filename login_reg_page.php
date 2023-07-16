@@ -29,6 +29,7 @@
             }, 2000); // Adjusted delay time to 2000 milliseconds (2 seconds)
         });
     </script>
+
 </head>
 
 <body>
@@ -39,6 +40,7 @@
     </div>
 
     <div class="container content">
+        <h2 class="card-title">Login to make a reservation</h2>
         <div class="card">
             <div class="card-body">
                 <div class="tab-content">
@@ -116,7 +118,6 @@
                                 <label for="phone-register">Phone</label>
                                 <input type="text" class="form-control" name="phone-register" required>
                             </div>
-
                             <button type="submit" name="register" class="btn btn-primary" id="register-button"
                                 disabled>Register</button>
 
@@ -138,16 +139,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="text-center">
+                <h5 class="small-text">Don't have an account yet? Register here</h5>
+            </div>
+
         </div>
     </div>
-
-    <!-- Add the button -->
-    <div class="home d-flex justify-content-center">
-        <a href="landing_page.php" class="btn btn-sm home-button" style="color: #fff;">Home</a>
-    </div>
-
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

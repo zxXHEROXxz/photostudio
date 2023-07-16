@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../images/login_bg.jpg');
+    background-image: url('../images/page_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -61,6 +61,7 @@ div.item:nth-of-type(5) {
     --offset: 5;
     background-color: #e9ff70;
 }
+
 .demo-photo-card {
     position: relative;
     display: -ms-flexbox;
@@ -69,11 +70,12 @@ div.item:nth-of-type(5) {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background: linear-gradient(to bottom, #8d87ad, #7ee4f7);
+    /* background: linear-gradient(to bottom, #8d87ad, #7ee4f7); */
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, .125);
+    /* border: 1px solid rgba(0, 0, 0, .125); */
     border-radius: 0.25rem;
 }
+
 .reservation-button {
     display: inline-block;
     padding: 5px 12px;
@@ -88,12 +90,23 @@ div.item:nth-of-type(5) {
 
 .reservation-button:hover {
     background-color: #127688;
+    color: #000 !important;
 }
 
 .reservation-button:hover a,
 .reservation-button:hover button {
     color: #000 !important;
 }
+
+.reservation-button a,
+.reservation-button button {
+    color: #fff;
+}
+
+.radio-spacing {
+    margin-right: 10px;
+}
+
 
 
 

@@ -2,35 +2,36 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="css/pre_loader.css">
-    <title>Photo Studio Loading</title>
-    <script>
-        // Function to redirect to the landing page
-        function redirect() {
-            window.location.href = "/PSS/landing_page.php";
-        }
-
-        // Wait for the animation to complete
-        window.onload = function () {
-            var loader = document.querySelector(".loader");
-            var loadingText = document.querySelector(".loading-text");
-
-            // Duration of the animation in milliseconds
-            var animationDuration = 2000;
-
-            // Set a timeout to redirect after the animation duration
-            setTimeout(function () {
-                loader.style.display = "none";
-                loadingText.innerHTML = "Redirecting...";
-                redirect();
-            }, animationDuration);
-        };
-    </script>
+	<title>Intro</title>
+	<link rel="stylesheet" href="css/smoke.css">
+	<!-- fa-icons -->
+	<script src="https://kit.fontawesome.com/59e5561b3d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="loader"></div>
-    <div class="loading-text">Loading...</div>
+
+	<section>
+		<video src="video\smoke.mp4" autoplay muted></video>
+		<h1>
+			<span>P</span>
+			<span>H</span>
+			<span>O</span>
+			<span>T</span>
+			<span>O</span>
+			<span>&nbsp;</span>
+			<span>S</span>
+			<span>T</span>
+			<span>U</span>
+			<span>D</span>
+			<span>I</span>
+			<span>O</span>
+			<span>&nbsp</span>
+			<span>&nbsp</span>
+			<span><a class="iconcolor" href="/pppp/landing_page.php"><i class="fas fa-sign-in-alt"></i></a></span>
+		</h1>
+
+	</section>
+
 </body>
 
 </html>

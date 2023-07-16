@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #183b6e;
-    background-image: url('../images/login_bg.jpg');
+    background-image: url('../images/page_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -39,6 +39,7 @@ body {
 .btn-primary {
     width: 100%;
 }
+
 .password-icon {
     position: absolute;
     right: 10px;
@@ -46,20 +47,19 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
-.home-button {
-    background-color: #0b92aa !important;
-    border-color: #0b92aa !important;
-    color: #fff;
-    width: 100px;
-    height: 35px;
-    border-radius: 5px;
-}
 
-.home-button:hover {
-    background-color: #127688 !important;
-    border-color: #127688 !important;
-    color: black !important; 
-}
+.text-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+.small-text {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #666;
+  }
+  
 
 
 

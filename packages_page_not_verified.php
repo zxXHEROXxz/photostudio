@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <title>Studio Page</title>
+    <title>Packages Page</title>
     <link rel="stylesheet" href="assets/css/packages_page.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -16,14 +17,6 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                <li class="nav-item active">
-                    <a class="nav-link">Packages</a>
-                </li>
-            </ul>
-        </div>
     </nav>
 
     <div class="container">
@@ -34,9 +27,9 @@
                     <form action="#" method="POST">
                         <select class="form-control" name="package" id="packageSelect">
                             <option value="">Select Package</option>
-                            <option value="package1">Package 1: Classic Portrait - $50</option>
+                            <option value="package1">Package 1: Classic Portrait - Rs.2000</option>
                             <option value="package2">Package 2: Family Fun - $100</option>
-                            <option value="package3">Package 3: Creative Concept - $250</option>
+                            <option value="package3">Package 3: Creative Concept - $150</option>
                         </select>
                     </form>
                 </div>
@@ -47,12 +40,11 @@
             <div class="col-md-6">
                 <div class="reservation-button">
                     <a href="login_reg_page.php">
-                        <button class="btn btn" id="reservationBtn" disabled style="color: #fff;">Make a
-                            Reservation</button>
+                        <button class="btn btn" id="reservationBtn" disabled>Make a Reservation</button>
                     </a>
                 </div>
-
             </div>
+
         </div>
 
         <div class="row mt-5">
@@ -75,25 +67,29 @@
                             <img src="assets/images/studio_dummy5.jpg" alt="Image 5" width="300" height="400">
                         </div>
                     </main>
+
+                    <div class="radio-buttons d-flex justify-content-center mt-3">
+                        <input type="radio" name="carousel-radio" id="radio1" checked>
+                        <div class="radio-spacing"></div>
+                        <input type="radio" name="carousel-radio" id="radio2">
+                        <div class="radio-spacing"></div>
+                        <input type="radio" name="carousel-radio" id="radio3">
+                        <div class="radio-spacing"></div>
+                        <input type="radio" name="carousel-radio" id="radio4">
+                        <div class="radio-spacing"></div>
+                        <input type="radio" name="carousel-radio" id="radio5">
+                    </div>
+
                     <div class="card-body">
                         <h5 class="card-title">Demo Photo</h5>
                         <p class="card-text">This is a demo photo to showcase the quality of our photography.</p>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-6">
                 <div class="card package-details-card">
                     <div class="card-body">
                         <h5 class="card-title">Package Details</h5>
-                        <div class="form-group">
-                            <label for="number-of-persons"><i class="fas fa-users"></i> Number of Persons:</label>
-                            <select class="form-control" id="number-of-persons" disabled>
-                                <option value="10">10 persons</option>
-                                <option value="15">15 persons</option>
-                                <option value="20">20 persons</option>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="location"><i class="fas fa-map-marker-alt"></i> Location:</label>
                             <select class="form-control" id="location" disabled>
@@ -104,14 +100,15 @@
                         <div class="form-group">
                             <label for="number-of-photos"><i class="fas fa-camera"></i> Number of Photos:</label>
                             <select class="form-control" id="number-of-photos" disabled>
+                                <option value="5">5 photos</option>
                                 <option value="10">10 photos</option>
-                                <option value="25">25 photos</option>
-                                <option value="50">50 photos</option>
+                                <option value="15">15 photos</option>
+                                <option value="20">20 photos</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="price"><i class="fas fa-dollar-sign"></i> Price:</label>
-                            <p id="packagePrice">$50</p>
+                            <p id="packagePrice">$0</p>
                         </div>
                         <div class="form-group">
                             <label for="additional-price"><i class="fas fa-dollar-sign"></i> Additional Price:</label>
@@ -119,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <label for="total-price"><i class="fas fa-dollar-sign"></i> Grand Total:</label>
-                            <p id="totalPrice">$50</p>
+                            <p id="totalPrice">$0</p>
                         </div>
                     </div>
                 </div>
@@ -133,29 +130,29 @@
         $(document).ready(function () {
             $('#packageSelect').change(function () {
                 var selectedPackage = $('#packageSelect').val();
-                var packagePrice = 0;
-                var numberOfPersons = parseInt($('#number-of-persons').val());
-                var numberOfPhotos = parseInt($('#number-of-photos').val());
+                var basePrice = 0;
+                var additionalPrice = 0;
 
                 if (selectedPackage === 'package1') {
-                    packagePrice = 50;
+                    basePrice = 50;
+                    $('#number-of-photos').val('5');
                 } else if (selectedPackage === 'package2') {
-                    packagePrice = 100;
+                    basePrice = 100;
+                    $('#number-of-photos').val('5');
                 } else if (selectedPackage === 'package3') {
-                    packagePrice = 250;
+                    basePrice = 150;
+                    $('#number-of-photos').val('5');
                 }
 
-                $('#packagePrice').text('$' + packagePrice);
+                $('#packagePrice').text('$' + basePrice);
                 $('#additionalPrice').text('$' + additionalPrice);
-                $('#totalPrice').text('$' + totalPrice);
+                $('#totalPrice').text('$' + (basePrice + additionalPrice));
 
                 if (selectedPackage !== '') {
-                    $('#number-of-persons').prop('disabled', false);
                     $('#location').prop('disabled', false);
                     $('#number-of-photos').prop('disabled', false);
                     $('#reservationBtn').removeAttr('disabled');
                 } else {
-                    $('#number-of-persons').prop('disabled', true);
                     $('#location').prop('disabled', true);
                     $('#number-of-photos').prop('disabled', true);
                     $('#reservationBtn').attr('disabled', 'disabled');
@@ -163,39 +160,75 @@
             });
 
             $('#number-of-persons, #number-of-photos').change(function () {
+                var selectedPackage = $('#packageSelect').val();
+                var basePrice = 0;
+                var additionalPrice = 0;
                 var numberOfPersons = parseInt($('#number-of-persons').val());
                 var numberOfPhotos = parseInt($('#number-of-photos').val());
-                var packagePrice = parseInt($('#packagePrice').text().replace('$', ''));
 
-                // var additionalPrice = (numberOfPersons * 10) + (numberOfPhotos * 5);
-                // var totalPrice = packagePrice + additionalPrice;
+                if (selectedPackage === 'package1') {
+                    basePrice = 50;
+                } else if (selectedPackage === 'package2') {
+                    basePrice = 100;
+                } else if (selectedPackage === 'package3') {
+                    basePrice = 150;
+                }
+
+                if (numberOfPhotos === 5) {
+                    additionalPrice = 0;
+                } else if (numberOfPhotos === 10) {
+                    additionalPrice = 50;
+                } else if (numberOfPhotos === 15) {
+                    additionalPrice = 100;
+                } else if (numberOfPhotos === 20) {
+                    additionalPrice = 150;
+                }
+
+                var totalPrice = basePrice + additionalPrice;
 
                 $('#additionalPrice').text('$' + additionalPrice);
                 $('#totalPrice').text('$' + totalPrice);
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var carouselItems = Array.from(document.querySelectorAll("#carousel .item"));
+            var position = 1;
 
-        // Carousel code
-        var carouselItems = Array.from(document.querySelectorAll("#carousel .item"));
-        var position = 1;
+            // Radio buttons functionality
+            var radioButtons = Array.from(document.querySelectorAll('.radio-buttons input'));
+            var carouselItems = Array.from(document.querySelectorAll("#carousel .item"));
+            var position = 1;
+            var interval;
 
-        function updateCarousel() {
-            carouselItems.forEach(item => item.style.setProperty("--position", position));
-        }
+            function updateCarousel() {
+                carouselItems.forEach(item => item.style.setProperty("--position", position));
+            }
 
-        function moveToNextImage() {
-            position = (position % 5) + 1;
-            updateCarousel();
-        }
+            function moveToNextImage() {
+                position = (position % 5) + 1;
+                updateCarousel();
+                radioButtons[position - 1].checked = true;
+            }
 
-        function moveToPreviousImage() {
-            position = (position - 2 + 5) % 5 + 1;
-            updateCarousel();
-        }
+            function startCarousel() {
+                interval = setInterval(moveToNextImage, 3000);
+            }
 
-        setInterval(moveToNextImage, 3000);
+            function stopCarousel() {
+                clearInterval(interval);
+            }
 
-        updateCarousel();
+            radioButtons.forEach(function (radioButton, index) {
+                radioButton.addEventListener('click', function () {
+                    position = index + 1;
+                    updateCarousel();
+                });
+            });
+
+            startCarousel();
+        });
     </script>
 </body>
 
