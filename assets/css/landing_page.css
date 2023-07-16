@@ -7,23 +7,23 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-.container {
+  }
+  
+  .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-.studio-package {
+  }
+  
+  .studio-package {
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
-}
-
-.package-card {
+  }
+  
+  .package-card {
     width: 300px;
     height: 450px;
     margin: 20px;
@@ -34,24 +34,45 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-
-.package-card h3 {
+    position: relative;
+  }
+  
+  .package-card:before,
+  .package-card:after {
+    content: "";
+    width: 20px;
+    height: 300px;
+    background-color: #01185c;
+    display: inline-block;
+    position: absolute;
+    top: calc(50% - 150px);
+  }
+  
+  .package-card:before {
+    margin-right: 10px;
+    left: -10px;
+  }
+  
+  .package-card:after {
+    margin-left: 10px;
+    right: -10px;
+  }
+  
+  .package-card h3 {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-.package-card p {
+  }
+  
+  .package-card p {
     font-size: 16px;
     margin-bottom: 20px;
-}
-
-.package-card-content {
+  }
+  
+  .package-card-content {
     flex-grow: 1;
-}
-
-.view-details-btn a {
+  }
+  
+  .view-details-btn a {
     display: inline-block;
     padding: 10px 20px;
     background-color: #0b92aa;
@@ -61,21 +82,21 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
     border: none;
-}
-
-.view-details-btn a:hover {
+  }
+  
+  .view-details-btn a:hover {
     background-color: #127688;
-    box-shadow: none; 
-}
-
-.login-register-button {
+    box-shadow: none;
+  }
+  
+  .login-register-button {
     position: fixed;
     top: 10px;
     right: 10px;
     z-index: 9999;
-}
-
-.login-register-button a {
+  }
+  
+  .login-register-button a {
     padding: 10px 20px;
     background-color: #0b92aa;
     color: #fff;
@@ -83,21 +104,19 @@ body {
     font-size: 16px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-}
-
-.login-register-button a:hover {
+  }
+  
+  .login-register-button a:hover {
     background-color: #127688;
-}
-
-.center-content {
+  }
+  
+  .center-content {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.row.justify-content-center.mt-5 { 
+  }
+  
+  .row.justify-content-center.mt-5 {
     margin-top: 12rem !important;
-}
-
-
-
+  }
+  
