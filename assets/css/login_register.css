@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -20,6 +21,7 @@ body {
 
 .card-body {
     padding: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .card-title {
@@ -52,16 +54,27 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-  }
+}
 
 .small-text {
     font-size: 14px;
     margin-top: 10px;
     color: #666;
-  }
-  
+}
 
+/* Card Animation */
+.card.animated {
+    animation: moveCard 1s ease-in-out;
+}
 
+@keyframes moveCard {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 
-
-
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

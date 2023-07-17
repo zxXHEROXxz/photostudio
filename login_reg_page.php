@@ -8,25 +8,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var loader = document.querySelector(".loader");
             var content = document.querySelector(".content");
+            var card = document.querySelector(".card");
 
-            // Show the loader on page refresh
-            if (performance.navigation.type === 1) {
-                loader.style.display = "flex";
-                content.style.display = "none";
-            } else {
-                loader.style.display = "none";
-                content.style.display = "block";
-            }
+            // Show the loader initially
+            loader.style.display = "flex";
+            content.style.display = "none";
 
             // Hide the loader and show the content after a delay
             setTimeout(function () {
                 loader.style.display = "none";
                 content.style.display = "block";
-            }, 2000); // Adjusted delay time to 2000 milliseconds (2 seconds)
+                card.classList.add("animated");
+            }, 2000);
         });
     </script>
 
@@ -36,7 +35,7 @@
 
     <!-- Loader HTML -->
     <div class="loader">
-        <img src="assets\images\loader.gif" alt="Loading...">
+        <img src="assets/images/loader.gif" alt="Loading...">
     </div>
 
     <div class="container content">
@@ -44,7 +43,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="tab-pane fade <?php echo $_SESSION['active_tab'] === 'login-form' ? 'show active' : ''; ?>"
+                    <div class="tab-pane fade <?php echo isset($_SESSION['active_tab']) && $_SESSION['active_tab'] === 'login-form' ? 'show active' : ''; ?>"
                         id="login-form">
                         <h5 class="card-title">Login</h5>
 
@@ -69,13 +68,11 @@
                         </form>
 
                     </div>
-                    <div class="tab-pane fade <?php echo $_SESSION['active_tab'] === 'register-form' ? 'show active' : ''; ?>"
+                    <div class="tab-pane fade <?php echo isset($_SESSION['active_tab']) && $_SESSION['active_tab'] === 'register-form' ? 'show active' : ''; ?>"
                         id="register-form">
                         <h5 class="card-title">Register</h5>
 
-
                         <form action="user_login_controller.php" method="post">
-
                             <div class="form-group">
                                 <label for="name-register">Name</label>
                                 <input type="text" class="form-control" name="name-register" required>
@@ -120,8 +117,6 @@
                             </div>
                             <button type="submit" name="register" class="btn btn-primary" id="register-button"
                                 disabled>Register</button>
-
-
                         </form>
 
                     </div>
@@ -130,11 +125,11 @@
             <div class="card-footer">
                 <ul class="nav nav-tabs card-footer-tabs justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $_SESSION['active_tab'] === 'login-form' ? 'active' : ''; ?>"
+                        <a class="nav-link <?php echo isset($_SESSION['active_tab']) && $_SESSION['active_tab'] === 'login-form' ? 'active' : ''; ?>"
                             id="login-tab" data-toggle="tab" href="#login-form">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $_SESSION['active_tab'] === 'register-form' ? 'active' : ''; ?>"
+                        <a class="nav-link <?php echo isset($_SESSION['active_tab']) && $_SESSION['active_tab'] === 'register-form' ? 'active' : ''; ?>"
                             id="register-tab" data-toggle="tab" href="#register-form">Register</a>
                     </li>
                 </ul>
@@ -145,7 +140,6 @@
 
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -163,6 +157,7 @@
                 passwordIcon.classList.add('fa-eye');
             }
         }
+
         function checkPasswordMatch() {
             var passwordInput = document.getElementById('password-register');
             var confirmPasswordInput = document.getElementById('confirm-password-register');
